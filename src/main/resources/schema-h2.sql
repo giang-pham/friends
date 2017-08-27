@@ -1,20 +1,20 @@
 CREATE TABLE Connection
 (
-    id NUMBER(19) NOT NULL,
+    id IDENTITY PRIMARY KEY,
     user1 VARCHAR2(50) NOT NULL,
     user2 VARCHAR2(50) NOT NULL,
 );
 
 CREATE TABLE Subscription
 (
-    id NUMBER(19) NOT NULL,
+    id IDENTITY PRIMARY KEY,
     requestor NUMBER(19) NOT NULL,
     target NUMBER(19) NOT NULL,
 );
 
 CREATE TABLE Block
 (
-    ID NUMBER(19) NOT NULL,
+    id IDENTITY PRIMARY KEY,
     requestor NUMBER(19) NOT NULL,
     target NUMBER(19) NOT NULL,
 );
