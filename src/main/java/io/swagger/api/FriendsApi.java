@@ -1,5 +1,6 @@
 package io.swagger.api;
 
+import io.swagger.model.FriendCommonRequest;
 import io.swagger.model.FriendListRequest;
 import io.swagger.model.FriendListResponse;
 
@@ -31,4 +32,13 @@ public interface FriendsApi {
         method = RequestMethod.POST)
     ResponseEntity<FriendListResponse> friendsPost(@ApiParam(value = "list all friends connected to this email address" ,required=true ) @RequestBody FriendListRequest body);
 
+    @ApiOperation(value = "", notes = "", response = FriendListResponse.class, tags={ "friend", })
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "successful operation", response = FriendListResponse.class),
+        @ApiResponse(code = 405, message = "Invalid input", response = FriendListResponse.class) })
+    @RequestMapping(value = "/common",
+        produces = { "application/json"},
+        consumes = { "application/json"},
+        method = RequestMethod.POST)
+    public ResponseEntity<FriendListResponse> friendsCommon(@ApiParam(value = "list all common friends between 2 email addresses" ,required=true ) @RequestBody FriendCommonRequest body);
 }
