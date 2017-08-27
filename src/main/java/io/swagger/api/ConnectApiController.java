@@ -1,24 +1,15 @@
 package io.swagger.api;
 
+import io.swagger.annotations.ApiParam;
 import io.swagger.data.Connection;
 import io.swagger.data.repository.ConnectionRepository;
 import io.swagger.model.FriendConnectRequest;
 import io.swagger.model.FriendConnectResponse;
-
-import io.swagger.annotations.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-08-24T03:28:13.112Z")
@@ -33,7 +24,7 @@ public class ConnectApiController implements ConnectApi {
         String user1 = body.getFriends().get(0);
         String user2 = body.getFriends().get(1);
         connectionRepository.save(new Connection.Builder().user1(user1).user2(user2).build());
-        return new ResponseEntity<FriendConnectResponse>(HttpStatus.OK);
+        return new ResponseEntity<FriendConnectResponse>(new FriendConnectResponse().success(true), HttpStatus.OK);
     }
 
 }
