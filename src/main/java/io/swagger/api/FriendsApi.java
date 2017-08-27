@@ -26,8 +26,8 @@ public interface FriendsApi {
         @ApiResponse(code = 200, message = "successful operation", response = FriendListResponse.class),
         @ApiResponse(code = 405, message = "Invalid input", response = FriendListResponse.class) })
     @RequestMapping(value = "/friends",
-        produces = { "application/json", "application/xml" }, 
-        consumes = { "application/json", "application/xml" },
+        produces = { "application/json"},
+        consumes = { "application/json"},
         method = RequestMethod.POST)
     ResponseEntity<FriendListResponse> friendsPost(@ApiParam(value = "list all friends connected to this email address" ,required=true ) @RequestBody FriendListRequest body);
 

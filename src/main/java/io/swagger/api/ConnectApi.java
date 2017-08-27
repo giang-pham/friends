@@ -26,8 +26,8 @@ public interface ConnectApi {
         @ApiResponse(code = 200, message = "successful operation", response = FriendConnectResponse.class),
         @ApiResponse(code = 405, message = "Invalid input", response = FriendConnectResponse.class) })
     @RequestMapping(value = "/connect",
-        produces = { "application/json", "application/xml" }, 
-        consumes = { "application/json", "application/xml" },
+        produces = { "application/json"},
+        consumes = { "application/json"},
         method = RequestMethod.POST)
     ResponseEntity<FriendConnectResponse> connectPost(@ApiParam(value = "connect 2 friends" ,required=true ) @RequestBody FriendConnectRequest body);
 

@@ -26,8 +26,8 @@ public interface BlockApi {
         @ApiResponse(code = 200, message = "successful operation", response = SubscribeResponse.class),
         @ApiResponse(code = 405, message = "Invalid input", response = SubscribeResponse.class) })
     @RequestMapping(value = "/block",
-        produces = { "application/json", "application/xml" }, 
-        consumes = { "application/json", "application/xml" },
+        produces = { "application/json"},
+        consumes = { "application/json"},
         method = RequestMethod.POST)
     ResponseEntity<SubscribeResponse> blockPost(@ApiParam(value = "subscribe update from an email to another" ,required=true ) @RequestBody SubscribeRequest body);
 

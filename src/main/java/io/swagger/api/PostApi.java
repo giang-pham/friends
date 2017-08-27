@@ -26,8 +26,8 @@ public interface PostApi {
         @ApiResponse(code = 200, message = "successful operation", response = SendEmailResponse.class),
         @ApiResponse(code = 405, message = "Invalid input", response = SendEmailResponse.class) })
     @RequestMapping(value = "/post",
-        produces = { "application/json", "application/xml" }, 
-        consumes = { "application/json", "application/xml" },
+        produces = { "application/json"},
+        consumes = { "application/json"},
         method = RequestMethod.POST)
     ResponseEntity<SendEmailResponse> postPost(@ApiParam(value = "subscribe update from an email to another" ,required=true ) @RequestBody SendEmailRequest body);
 
