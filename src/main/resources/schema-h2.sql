@@ -8,13 +8,13 @@ CREATE TABLE Connection
 CREATE TABLE Subscription
 (
     id IDENTITY PRIMARY KEY,
-    requestor NUMBER(19) NOT NULL,
-    target NUMBER(19) NOT NULL,
+    requestor VARCHAR2(50) NOT NULL,
+    target VARCHAR2(50) NOT NULL,
 );
 
 CREATE TABLE Block
 (
     id IDENTITY PRIMARY KEY,
-    requestor NUMBER(19) NOT NULL,
-    target NUMBER(19) NOT NULL,
+    requestor VARCHAR2(50) NOT NULL,
+    target VARCHAR2(50) NOT NULL,
 );
