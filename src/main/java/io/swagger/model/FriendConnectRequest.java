@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
 
 public class FriendConnectRequest   {
   @JsonProperty("friends")
+  @NotNull
   private List<String> friends = new ArrayList<String>();
 
   public FriendConnectRequest friends(List<String> friends) {

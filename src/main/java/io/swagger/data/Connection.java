@@ -19,6 +19,11 @@ public class Connection {
     @Column(name = "user2", nullable = false)
     private String user2;
 
+    private Connection(Builder builder) {
+        setUser1(builder.user1);
+        setUser2(builder.user2);
+    }
+
     public long getId() {
         return id;
     }
@@ -41,5 +46,28 @@ public class Connection {
 
     public void setUser2(String user2) {
         this.user2 = user2;
+    }
+
+
+    public static final class Builder {
+        private String user1;
+        private String user2;
+
+        public Builder() {
+        }
+
+        public Builder user1(String val) {
+            user1 = val;
+            return this;
+        }
+
+        public Builder user2(String val) {
+            user2 = val;
+            return this;
+        }
+
+        public Connection build() {
+            return new Connection(this);
+        }
     }
 }

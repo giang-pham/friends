@@ -1,10 +1,13 @@
 package io.swagger.api;
 
+import io.swagger.data.Connection;
+import io.swagger.data.repository.ConnectionRepository;
 import io.swagger.model.FriendConnectRequest;
 import io.swagger.model.FriendConnectResponse;
 
 import io.swagger.annotations.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,9 +25,14 @@ import java.util.List;
 
 @Controller
 public class ConnectApiController implements ConnectApi {
+    @Autowired
+    private ConnectionRepository connectionRepository;
 
     public ResponseEntity<FriendConnectResponse> connectPost(@ApiParam(value = "connect 2 friends" ,required=true ) @RequestBody FriendConnectRequest body) {
         // do some magic!
+        String user1 = body.getFriends().get(0);
+        String user2 = body.getFriends().get(1);
+        connectionRepository.save(new Connection.Builder().user1(user1).user2(user2).build());
         return new ResponseEntity<FriendConnectResponse>(HttpStatus.OK);
     }
 
