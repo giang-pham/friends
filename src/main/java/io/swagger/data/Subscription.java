@@ -19,6 +19,11 @@ public class Subscription {
     @Column(name = "target", nullable = false)
     private String target;
 
+    private Subscription(Builder builder) {
+        setRequestor(builder.requestor);
+        setTarget(builder.target);
+    }
+
     public long getId() {
         return id;
     }
@@ -41,5 +46,28 @@ public class Subscription {
 
     public void setTarget(String target) {
         this.target = target;
+    }
+
+
+    public static final class Builder {
+        private String requestor;
+        private String target;
+
+        public Builder() {
+        }
+
+        public Builder requestor(String val) {
+            requestor = val;
+            return this;
+        }
+
+        public Builder target(String val) {
+            target = val;
+            return this;
+        }
+
+        public Subscription build() {
+            return new Subscription(this);
+        }
     }
 }

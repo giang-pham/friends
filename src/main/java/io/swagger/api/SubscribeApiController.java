@@ -1,10 +1,13 @@
 package io.swagger.api;
 
+import io.swagger.data.repository.SubscriptionRepository;
+import io.swagger.data.service.SubscriptionService;
 import io.swagger.model.SubscribeRequest;
 import io.swagger.model.SubscribeResponse;
 
 import io.swagger.annotations.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,9 +26,11 @@ import java.util.List;
 @Controller
 public class SubscribeApiController implements SubscribeApi {
 
+    @Autowired
+    SubscriptionService subscriptionService;
     public ResponseEntity<SubscribeResponse> subscribePost(@ApiParam(value = "subscribe update from an email to another" ,required=true ) @RequestBody SubscribeRequest body) {
-        // do some magic!
-        return new ResponseEntity<SubscribeResponse>(HttpStatus.OK);
+        subscriptionService.saveSubscription(body.getRequestor(), body.getTarget());
+        return new ResponseEntity<SubscribeResponse>(new SubscribeResponse().success(true), HttpStatus.OK);
     }
 
 }
