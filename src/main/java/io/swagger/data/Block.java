@@ -19,6 +19,11 @@ public class Block {
     @Column(name = "target", nullable = false)
     private String target;
 
+    private Block(Builder builder) {
+        setRequestor(builder.requestor);
+        setTarget(builder.target);
+    }
+
     public long getId() {
         return id;
     }
@@ -41,5 +46,28 @@ public class Block {
 
     public void setTarget(String target) {
         this.target = target;
+    }
+
+
+    public static final class Builder {
+        private String requestor;
+        private String target;
+
+        public Builder() {
+        }
+
+        public Builder requestor(String val) {
+            requestor = val;
+            return this;
+        }
+
+        public Builder target(String val) {
+            target = val;
+            return this;
+        }
+
+        public Block build() {
+            return new Block(this);
+        }
     }
 }

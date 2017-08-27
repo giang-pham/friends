@@ -1,10 +1,12 @@
 package io.swagger.api;
 
+import io.swagger.data.service.PostUpdateService;
 import io.swagger.model.SendEmailRequest;
 import io.swagger.model.SendEmailResponse;
 
 import io.swagger.annotations.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,9 +25,14 @@ import java.util.List;
 @Controller
 public class PostApiController implements PostApi {
 
+    @Autowired
+    PostUpdateService postUpdateService;
+
     public ResponseEntity<SendEmailResponse> postPost(@ApiParam(value = "subscribe update from an email to another" ,required=true ) @RequestBody SendEmailRequest body) {
-        // do some magic!
-        return new ResponseEntity<SendEmailResponse>(HttpStatus.OK);
+        String sender = body.getSender();
+        String text = body.getText();
+        List<String> recipients = postUpdateService.getRecipientList(sender, text);
+        return new ResponseEntity<SendEmailResponse>(new SendEmailResponse().recipients(recipients).success(true), HttpStatus.OK);
     }
 
 }

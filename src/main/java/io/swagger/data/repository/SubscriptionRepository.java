@@ -12,4 +12,6 @@ import java.util.List;
  * Created by Giang on 27-Aug-17.
  */
 public interface SubscriptionRepository extends JpaRepository<Subscription, String> {
+    @Query("select a.requestor from Subscription a where a.target = :target")
+    public List<String> findSubscribersByEmail(@Param("target") String target);
 }
